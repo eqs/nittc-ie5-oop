@@ -18,17 +18,22 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class ImagePanel extends JPanel{
+	
+	// 表示するグレースケール画像
+	private GrayImage image;
 
 	/**
 	 * パネルに画像をセットするメソッド
 	 * @param img セットする画像
 	 */
 	public void setImage(BufferedImage img){
-
+		this.image = new GrayImage(img);
+		this.repaint();
 	}
 	
 	@Override
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
+		g.drawImage(image, 0, 0, this);
 	}
 }

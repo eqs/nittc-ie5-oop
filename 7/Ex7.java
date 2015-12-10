@@ -20,6 +20,8 @@ public class Ex7{
 	
 	private JFrame frame;
 	private JTextArea textArea;
+
+	private ImagePanel imagePanel;
 	
 	/**
 	 * Launch the application.
@@ -67,6 +69,12 @@ public class Ex7{
 			public void actionPerformed(ActionEvent e){
 				System.out.println("ファイルを読み込む！！！");
 				textArea.append(String.format("Load '%s'\n", textField.getText()));
+				try{
+					BufferedImage img = ImageIO.read(new File(textField.getText()));
+					imagePanel.setImage(img);
+				}catch(IOException e1){
+					textArea.append(String.format("Can't find or load '%s'\n", textField.getText()));
+				}
 			}
 		});
 		westPanel.add(btnLoad);
@@ -92,6 +100,9 @@ public class Ex7{
 	
 		JScrollPane scroll1 = new JScrollPane(textArea);
 		frame.getContentPane().add(scroll1, BorderLayout.SOUTH);
+
+		imagePanel = new ImagePanel();
+		frame.getContentPane().add(imagePanel, BorderLayout.CENTER);
 
 	}
 }
