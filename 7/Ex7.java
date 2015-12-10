@@ -88,7 +88,7 @@ public class Ex7{
 		westPanel.add(btnNegative);
 		
 		textArea = new JTextArea("");
-		textArea.setPreferredSize(new Dimension());
+		textArea.setPreferredSize(new Dimension(256, 64));
 	
 		JScrollPane scroll1 = new JScrollPane(textArea);
 		frame.getContentPane().add(scroll1, BorderLayout.SOUTH);
