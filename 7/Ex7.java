@@ -3,15 +3,18 @@ import java.awt.image.BufferedImage;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.BoxLayout;
+import javax.swing.SwingConstants;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -55,16 +58,19 @@ public class Ex7{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel westPanel = new JPanel();
-		westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
+		westPanel.setPreferredSize(new Dimension(228, 64));
+		westPanel.setLayout(new FlowLayout());
 		frame.getContentPane().add(westPanel, BorderLayout.WEST);
 		
 		JLabel label1 = new JLabel("File Name");
 		westPanel.add(label1);
 		
-		JTextField textField = new JTextField("./aaa.png");
+		JTextField textField = new JTextField("./lena.png");
+		textField.setPreferredSize(new Dimension(192, 24));
 		westPanel.add(textField);
 
 		JButton btnLoad = new JButton("Load");
+		btnLoad.setPreferredSize(new Dimension(160, 24));
 		btnLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				System.out.println("ファイルを読み込む！！！");
@@ -78,8 +84,13 @@ public class Ex7{
 			}
 		});
 		westPanel.add(btnLoad);
+	
+		JSeparator separator = new JSeparator(SwingConstants.HORIZONTAL);
+		separator.setPreferredSize(new Dimension(160, 8));
+		westPanel.add(separator);
 
 		JButton btnBinary = new JButton("Binary");
+		btnBinary.setPreferredSize(new Dimension(160, 24));
 		btnBinary.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				System.out.println("2値化！！！");
@@ -88,6 +99,7 @@ public class Ex7{
 		westPanel.add(btnBinary);
 		
 		JButton btnNegative = new JButton("Negative");
+		btnNegative.setPreferredSize(new Dimension(160, 24));
 		btnNegative.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				System.out.println("ネガ・ポジ！！！");
@@ -96,7 +108,7 @@ public class Ex7{
 		westPanel.add(btnNegative);
 		
 		textArea = new JTextArea("");
-		textArea.setPreferredSize(new Dimension(256, 64));
+		textArea.setPreferredSize(new Dimension(160, 64));
 	
 		JScrollPane scroll1 = new JScrollPane(textArea);
 		frame.getContentPane().add(scroll1, BorderLayout.SOUTH);
