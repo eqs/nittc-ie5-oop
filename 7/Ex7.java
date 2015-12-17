@@ -81,6 +81,7 @@ public class Ex7{
 					BufferedImage bimg = ImageIO.read(new File(textField.getText()));
 					img = new GrayImage(bimg);
 					imagePanel.setImage(img);
+					imagePanel.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));
 				}catch(IOException e1){
 					textArea.append(String.format("Can't find or load '%s'\n", textField.getText()));
 				}
@@ -120,14 +121,16 @@ public class Ex7{
 		});
 		westPanel.add(btnNegative);
 		
-		textArea = new JTextArea("");
-		textArea.setPreferredSize(new Dimension(160, 64));
+		textArea = new JTextArea(5, 128);
+		//textArea.setPreferredSize(new Dimension(160, 64));
 	
-		JScrollPane scroll1 = new JScrollPane(textArea);
+		JScrollPane scroll1 = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		frame.getContentPane().add(scroll1, BorderLayout.SOUTH);
-
+		
 		imagePanel = new ImagePanel();
-		frame.getContentPane().add(imagePanel, BorderLayout.CENTER);
+		
+		JScrollPane scroll2 = new JScrollPane(imagePanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		frame.getContentPane().add(scroll2, BorderLayout.CENTER);
 
 	}
 }
