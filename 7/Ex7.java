@@ -23,8 +23,11 @@ public class Ex7{
 	
 	private JFrame frame;
 	private JTextArea textArea;
-
+	
 	private ImagePanel imagePanel;
+	
+	// グレースケール画像を突っ込んでおく変数
+	private GrayImage img;
 	
 	/**
 	 * Launch the application.
@@ -76,7 +79,8 @@ public class Ex7{
 				System.out.println("ファイルを読み込む！！！");
 				textArea.append(String.format("Load '%s'\n", textField.getText()));
 				try{
-					BufferedImage img = ImageIO.read(new File(textField.getText()));
+					BufferedImage bimg = ImageIO.read(new File(textField.getText()));
+					img = new GrayImage(bimg);
 					imagePanel.setImage(img);
 				}catch(IOException e1){
 					textArea.append(String.format("Can't find or load '%s'\n", textField.getText()));
@@ -93,7 +97,12 @@ public class Ex7{
 		btnBinary.setPreferredSize(new Dimension(160, 24));
 		btnBinary.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
-				System.out.println("2値化！！！");
+				// 2値化フィルタを画像に適用する
+				BinaryImageFilter f = new BinaryImageFilter();
+				img.applyFilter(f);
+				imagePanel.setImage(img);
+				imagePanel.repaint();
+				textArea.append(String.format("apply binary filter\n"));
 			}
 		});
 		westPanel.add(btnBinary);
