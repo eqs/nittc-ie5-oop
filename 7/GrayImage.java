@@ -45,4 +45,43 @@ public class GrayImage extends BufferedImage{
 		int b = (rgb >>  0) & 0xFF;
 		return (int)(0.2989 * r + 0.3587 * g + 0.1140 * b);
 	}
+
+	/**
+	 * 指定された位置の画素値を取得するメソッド
+	 * @param x x座標
+	 * @param y y座標
+	 */
+	public int getGray(int x, int y){
+		int argb = img.getRGB(x, y);
+		return rgbToGray(argb);
+	}
+
+	/**
+	 * 指定された位置の画素値を取得するメソッド
+	 * @param x x座標
+	 * @param y y座標
+	 */
+	public int getGray(int x, int y){
+		int argb = this.getRGB(x, y);
+		return argb & 0xFF;
+	}
+
+	/**
+	 * 指定された位置に画素値をセットするメソッド
+	 * @param x x座標
+	 * @param y y座標
+	 * @param gray 画素値
+	 */
+	public void setGray(int x, int y, int gray){
+		int argb = grayToRgb(gray);
+		this.setRGB(argb);
+	}
+	
+	/**
+	 * 受けとったフィルタを画像に適用するメソッド
+	 * @param f フィルタ
+	 */
+	public void applyFilter(AbstractImageFilter f){
+		f.process(this);
+	}
 }
