@@ -76,7 +76,6 @@ public class Ex7{
 		btnLoad.setPreferredSize(new Dimension(160, 24));
 		btnLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
-				System.out.println("ファイルを読み込む！！！");
 				textArea.append(String.format("Load '%s'\n", textField.getText()));
 				try{
 					BufferedImage bimg = ImageIO.read(new File(textField.getText()));
@@ -111,7 +110,12 @@ public class Ex7{
 		btnNegative.setPreferredSize(new Dimension(160, 24));
 		btnNegative.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
-				System.out.println("ネガ・ポジ！！！");
+				// ネガ・ポジ変換フィルタを画像に適用する
+				NegativeImageFilter f = new NegativeImageFilter();
+				img.applyFilter(f);
+				imagePanel.setImage(img);
+				imagePanel.repaint();
+				textArea.append(String.format("apply negative filter\n"));
 			}
 		});
 		westPanel.add(btnNegative);

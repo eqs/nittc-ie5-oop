@@ -52,7 +52,7 @@ public class GrayImage extends BufferedImage{
 	 */
 	public int getGray(int x, int y){
 		int argb = this.getRGB(x, y);
-		return rgbToGray(argb);
+		return argb & 0xFF;
 	}
 
 	/**
