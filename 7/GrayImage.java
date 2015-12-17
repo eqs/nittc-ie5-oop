@@ -11,15 +11,14 @@ public class GrayImage extends BufferedImage{
 		super(img.getWidth(), img.getHeight(), TYPE_INT_ARGB);
 		
 		// 引数で受け取った画像をグレースケール変換して保持する
-		for(int i = 0; i < img.getHeight(); i++){
-			for(int j = 0; j < img.getWidth(); j++){
+		for(int y = 0; y < img.getHeight(); y++){
+			for(int x = 0; x < img.getWidth(); x++){
 				// 画像から画素値を取得する
-				int argb = img.getRGB(j, i);
+				int argb = img.getRGB(x, y);
 				// グレースケール変換
 				int l = rgbToGray(argb);
 				// GrayImageに画素をセットする
-				argb = grayToRgb(l);
-				this.setRGB(j, i, argb);
+				this.setGray(x, y, l);
 			}
 		}
 	}
@@ -52,18 +51,8 @@ public class GrayImage extends BufferedImage{
 	 * @param y y座標
 	 */
 	public int getGray(int x, int y){
-		int argb = img.getRGB(x, y);
-		return rgbToGray(argb);
-	}
-
-	/**
-	 * 指定された位置の画素値を取得するメソッド
-	 * @param x x座標
-	 * @param y y座標
-	 */
-	public int getGray(int x, int y){
 		int argb = this.getRGB(x, y);
-		return argb & 0xFF;
+		return rgbToGray(argb);
 	}
 
 	/**
@@ -74,7 +63,7 @@ public class GrayImage extends BufferedImage{
 	 */
 	public void setGray(int x, int y, int gray){
 		int argb = grayToRgb(gray);
-		this.setRGB(argb);
+		this.setRGB(x, y, argb);
 	}
 	
 	/**
