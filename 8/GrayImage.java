@@ -70,7 +70,7 @@ public class GrayImage extends BufferedImage{
 	 * 受けとったフィルタを画像に適用するメソッド
 	 * @param f フィルタ
 	 */
-	public void applyFilter(AbstractImageFilter f){
+	public void applyFilter(Processable f){
 		f.process(this);
 	}
 }

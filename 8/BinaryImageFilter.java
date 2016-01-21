@@ -1,5 +1,5 @@
 
-public class BinaryImageFilter implements AbstractImageFilter{
+public class BinaryImageFilter implements Processable{
 	
 	// 2値化に用いる閾値
 	private int threshold = 128;

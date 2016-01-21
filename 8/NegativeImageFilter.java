@@ -3,7 +3,7 @@
  * 画像にネガ・ポジ変換をかけるフィルタ
  * @author Satoshi MURASHIGE
  */
-public class NegativeImageFilter implements AbstractImageFilter{
+public class NegativeImageFilter implements Processable{
 	
 	@Override
 	public void process(GrayImage img){
